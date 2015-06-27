@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\db.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="dbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.stat_count_values" Member="stat_count_values">
+    <Type Name="stat_count_value">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="stat_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_created" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="stat_stat_count_value" Member="stat" ThisKey="stat_id" OtherKey="id" Type="stat" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stats" Member="stats">
+    <Type Name="stat">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="stat_type" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="unit" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="stat_stat_count_value" Member="stat_count_values" ThisKey="id" OtherKey="stat_id" Type="stat_count_value" />
+      <Association Name="stat_stat_measure_value" Member="stat_measure_values" ThisKey="id" OtherKey="stat_id" Type="stat_measure_value" />
+      <Association Name="stat_stat_countdown_value" Member="stat_countdown_values" ThisKey="id" OtherKey="stat_id" Type="stat_countdown_value" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stat_measure_values" Member="stat_measure_values">
+    <Type Name="stat_measure_value">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="stat_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_created" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.Decimal" DbType="Decimal(19,4) NOT NULL" CanBeNull="false" />
+      <Association Name="stat_stat_measure_value" Member="stat" ThisKey="stat_id" OtherKey="id" Type="stat" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stat_countdown_values" Member="stat_countdown_values">
+    <Type Name="stat_countdown_value">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="stat_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_created" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Association Name="stat_stat_countdown_value" Member="stat" ThisKey="stat_id" OtherKey="id" Type="stat" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

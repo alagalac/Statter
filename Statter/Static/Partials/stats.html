@@ -1,0 +1,28 @@
+﻿
+<div class="form-inline">
+    <label>Search for a statistic</label>
+    <input type="text"  class="form-control" ng-model="searchText" ng-change="search()" />
+    <button class="btn btn-default" ng-click="search()">Search</button>
+</div>
+<br/>
+<div>
+    <a ui-sref="newStat" class="btn-primary btn">Create New Statistic</a>
+</div>
+<br />
+<table class="table table-striped">
+    <tbody>
+        <tr ng-repeat="stat in searchResults">
+            <td>
+                <p ng-bind="stat.Name"></p>
+            </td>
+            <td>
+                <p ng-bind="stat.Value"></p>
+            </td>
+            <td>
+                <button class="btn btn-default" ng-show="stat.Subscribed == false" ng-click="subscribe(stat)">Subscribe</button>
+                <button class="btn btn-default" ng-show="stat.Subscribed == true" ng-click="unsubscribe(stat)">Unsubscribe</button>
+                <a class="btn btn-default" ui-sref="viewStat({id:stat.Id})">View Detail</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,18 @@
+﻿<form>
+    <div class="form-group">
+        <label for="statName">Name</label>
+        <input type="text" class="form-control" id="statName" ng-model="stat.Name">
+    </div>
+    <div class="form-group">
+        <label for="statDescription">Description</label>
+        <textarea class="form-control" id="statDescription" ng-model="stat.Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="statType">Type</label>
+        <select class="form-control" id="statType" ng-model="stat.StatisticType">
+            <option>Count</option>
+            <option>Measure</option>
+        </select>
+    </div>
+    <button class="btn btn-default" ng-click="addStatistic()">Create</button>
+</form>
