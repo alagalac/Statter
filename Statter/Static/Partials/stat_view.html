@@ -1,14 +1,13 @@
-﻿<form>
+﻿
+<h2>{{stat.Name}}</h2>
+
+<p>{{stat.Description}}</p>
+<p>Type: {{stat.StatisticType}}</p>
+
+<form class="form-inline">
     <div class="form-group">
-        <label>Name</label>
-        <p>{{stat.Name}}</p>
+        <label for="newValue">New value:</label>
+        <input type="text" class="form-control" id="newValue" ng-model="val.value">
     </div>
-    <div class="form-group">
-        <label>Description</label>
-        <p>{{stat.Description}}</p>
-    </div>
-    <div class="form-group">
-        <label for="statType">Type</label>
-        <p>{{stat.StatisticType}}</p>
-    </div>
+    <button class="btn btn-default" ng-click="addValue()">Submit new value</button>
 </form>

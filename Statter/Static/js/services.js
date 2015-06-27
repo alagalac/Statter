@@ -19,10 +19,10 @@ angular.module('statter.services', [])
 
         var header = { 'Authorization': 'Basic ' + btoa('testuser:Pass1word') };
 
-        return $resource('/api/values/:statisticId/', { statisticId: '@StatisticId' },
+        return $resource('/api/values/', {},
             {
-                'read': { method: 'GET', url: '/api/values/:statisticId/read' },
-                'write': { method: 'POST', url: '/api/values/:statisticId/write', headers: header }
+                'read': { method: 'GET' },
+                'write': { method: 'POST', headers: header }
             });
     })
     .service('popupService', function ($window) {

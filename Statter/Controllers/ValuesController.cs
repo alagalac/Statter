@@ -14,9 +14,9 @@ namespace Statter.Controllers
         private DataClasses1DataContext context = new DataClasses1DataContext();
 
         [HttpGet]
-        public IHttpActionResult Read(int id, int count = 1)
+        public IHttpActionResult Index(int statisticId, int count = 1)
         {
-            var stat = context.stats.FirstOrDefault(x => x.id == id);
+            var stat = context.stats.FirstOrDefault(x => x.id == statisticId);
             if (stat == null)
             {
                 return NotFound();
@@ -25,28 +25,44 @@ namespace Statter.Controllers
             var values = new List<string>();
             if (stat.stat_type == "COUNT")
             {
-                values = context.stat_count_values.Where(x => x.stat_id == id).OrderByDescending(x => x.date_created).Take(count).Select(x => x.value.ToString()).ToList();
+                values = context.stat_count_values.Where(x => x.stat_id == statisticId).OrderByDescending(x => x.date_created).Take(count).Select(x => x.value.ToString()).ToList();
             }
 
             return Ok(values);
         }
 
-        [IdentityBasicAuthentication]
-        [Authorize]
-        public IHttpActionResult Write(int id, string value)
+ //       [IdentityBasicAuthentication]
+ //       [Authorize]
+        [HttpPost]
+        public IHttpActionResult Create(StatisticValue val)
         {
-            var stat = context.stats.FirstOrDefault(x => x.id == id);
+            var stat = context.stats.FirstOrDefault(x => x.id == val.StatisticId);
             if (stat == null)
             {
                 return NotFound();
             }
 
-            if (stat.stat_type == "COUNT")
+            try
             {
+                if (stat.stat_type == "COUNT")
+                {
+                    var v = new stat_count_value();
+                    v.stat_id = val.StatisticId;
+                    v.value = Convert.ToInt64(val.Value);
+                    v.date_created = DateTime.Now;
 
+                    context.stat_count_values.InsertOnSubmit(v);
+                }
+            
+                context.SubmitChanges();
+            }
+            catch
+            {
+                return BadRequest();
             }
 
             return Ok();
         }
+
     }
 }

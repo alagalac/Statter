@@ -13,7 +13,8 @@ namespace Statter.Controllers
     {
         private DataClasses1DataContext context = new DataClasses1DataContext();
 
-        public IEnumerable<Statistic> GetAllStatistics(string searchText = "")
+        [HttpGet]
+        public IEnumerable<Statistic> Index(string searchText = "")
         {
             IEnumerable<stat> statistics;
 
@@ -41,7 +42,8 @@ namespace Statter.Controllers
             return stats;
         }
 
-        public IHttpActionResult GetStatistic(int id)
+        [HttpGet]
+        public IHttpActionResult Show(int id)
         {
             var stat = context.stats.FirstOrDefault(x => x.id == id);
             if (stat == null)

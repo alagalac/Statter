@@ -141,10 +141,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MeasureValue.cs" />
     <Compile Include="Models\Statistic.cs" />
-    <Compile Include="Models\CountValue.cs" />
-    <Compile Include="Models\CountdownValue.cs" />
+    <Compile Include="Models\StatisticValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

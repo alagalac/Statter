@@ -19,11 +19,6 @@ namespace Statter
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApiWithAction",
-                routeTemplate: "api/{controller}/{id}/{action}"
-            );
         }
     }
 }

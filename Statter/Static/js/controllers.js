@@ -21,26 +21,35 @@
 
     $scope.stat = Statistic.get({ id: $stateParams.id });
 
-    $scope.statValues = Value.read({ statisticId: $stateParams.id, count: 10 })
+    $scope.val = new Value();
+    $scope.val.statisticId = $stateParams.id;
+
+    //$scope.statValues = Value.read({ statisticId: $stateParams.id, count: 10 })
+
+    $scope.addValue = function () {
+        $scope.val.$save();
+        //Value.write({ statisticId: $stateParams.id, value: $scope.newValue });
+        
+    }
 
 }).controller('StatisticCreateController', function ($scope, $state, $stateParams, Statistic) {
 
     $scope.stat = new Statistic();
 
-    $scope.addStatistic= function () {
+    $scope.addStatistic = function () {
         $scope.stat.$save(function () {
             $state.go('stats');
         });
     }
 
 }).controller('StatisticEditController', function ($scope, $state, $stateParams, Statistic) {
-
+/*
     $scope.updateMovie = function () {
         $scope.stat.$update(function () {
             $state.go('stats');
         });
     };
-
+*/
     $scope.loadStatistic = function () {
         $scope.stat = Statistic.get({ id: $stateParams.id });
     };

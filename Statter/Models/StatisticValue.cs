@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Statter.Models
 {
-    public class CountdownValue
+    public class StatisticValue
     {
-        public int Id { get; set; }
         public int StatisticId { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime Value { get; set; }
+        public string Value { get; set; }
     }
 }
